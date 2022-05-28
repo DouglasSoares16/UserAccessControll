@@ -7,9 +7,9 @@ class CreateRoleController {
   async handle(request: Request, response: Response): Promise<Response> {
     const createRoleUseCase = container.resolve(CreateRoleUseCase);
 
-    const { name, description } = request.body;
+    const { name, description, permissions_id } = request.body;
 
-    await createRoleUseCase.execute({ name, description });
+    await createRoleUseCase.execute({ name, description, permissions_id });
 
     return response.status(201).json();
   }

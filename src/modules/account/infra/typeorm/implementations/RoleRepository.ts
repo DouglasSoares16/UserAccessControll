@@ -12,6 +12,12 @@ class RoleRepository implements IRoleRepository {
     this.repository = getRepository(Role);
   }
 
+  async findAll(): Promise<Role[]> {
+    return this.repository.find({
+      relations: ["permissions"],
+    });
+  }
+
   async findByName(name: string): Promise<Role> {
     const role = await this.repository.findOne({
       where: {
@@ -22,8 +28,12 @@ class RoleRepository implements IRoleRepository {
     return role;
   }
 
-  async create(data: ICreateRoleDTO): Promise<void> {
-    const role = this.repository.create(data);
+  async create({
+    name,
+    description,
+    permissions,
+  }: ICreateRoleDTO): Promise<void> {
+    const role = this.repository.create({ name, description, permissions });
 
     await this.repository.save(role);
   }

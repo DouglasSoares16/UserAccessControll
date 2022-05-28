@@ -1,5 +1,14 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryColumn,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
+
+import { Permission } from "./Permission";
 
 @Entity("roles")
 class Role {
@@ -14,6 +23,14 @@ class Role {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @ManyToMany(() => Permission)
+  @JoinTable({
+    name: "permissions_roles",
+    joinColumns: [{ name: "role_id" }],
+    inverseJoinColumns: [{ name: "permission_id" }],
+  })
+  permissions: Permission[];
 
   constructor() {
     if (!this.id) {
