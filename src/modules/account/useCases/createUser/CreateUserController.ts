@@ -7,9 +7,14 @@ class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const createUserUseCase = container.resolve(CreateUserUseCase);
 
-    const { name, email, password } = request.body;
+    const { name, email, password, roles_id } = request.body;
 
-    const user = await createUserUseCase.execute({ name, email, password });
+    const user = await createUserUseCase.execute({
+      name,
+      email,
+      password,
+      roles_id,
+    });
 
     delete user.password;
 
