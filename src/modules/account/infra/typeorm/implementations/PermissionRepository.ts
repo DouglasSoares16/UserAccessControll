@@ -11,6 +11,16 @@ class PermissionRepository implements IPermissionRepository {
   constructor() {
     this.repository = getRepository(Permission);
   }
+
+  async findAll(): Promise<Permission[]> {
+    return this.repository.find();
+  }
+
+  async findAllByIds(ids: string[]): Promise<Permission[]> {
+    const permisisons = await this.repository.findByIds(ids);
+
+    return permisisons;
+  }
   async findByName(name: string): Promise<Permission> {
     const permission = await this.repository.findOne({
       where: {
