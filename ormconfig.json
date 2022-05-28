@@ -4,7 +4,7 @@
   "host": "localhost",
   "username": "postgres",
   "password": "ignitepro",
-  "database": "setup_node",
+  "database": "study_permissions",
   "migrations": [
     "./src/shared/infra/typeorm/migrations/*.ts"
   ],
