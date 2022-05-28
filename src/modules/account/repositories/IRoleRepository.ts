@@ -5,6 +5,7 @@ interface IRoleRepository {
   create(data: ICreateRoleDTO): Promise<void>;
   findByName(name: string): Promise<Role>;
   findAll(): Promise<Role[]>;
+  findAllByIds(ids: string[]): Promise<Role[]>;
 }
 
 export { IRoleRepository };
