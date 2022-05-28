@@ -12,6 +12,16 @@ class RoleRepository implements IRoleRepository {
     this.repository = getRepository(Role);
   }
 
+  async findByName(name: string): Promise<Role> {
+    const role = await this.repository.findOne({
+      where: {
+        name,
+      },
+    });
+
+    return role;
+  }
+
   async create(data: ICreateRoleDTO): Promise<void> {
     const role = this.repository.create(data);
 
