@@ -43,7 +43,9 @@ class AuthenticateUserUseCase {
       throw new AuthenticateUserError.EmailOrPasswordIncorrect();
     }
 
-    const token = sign({}, auth.secret, {
+    const roles = user.roles.map((role) => role.name);
+
+    const token = sign({ roles }, auth.secret, {
       subject: user.email,
       expiresIn: "15m",
     });
