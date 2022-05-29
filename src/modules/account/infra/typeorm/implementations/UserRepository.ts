@@ -17,6 +17,7 @@ class UserRepository implements IUserRepository {
       where: {
         email,
       },
+      relations: ["roles"],
     });
 
     return user;
