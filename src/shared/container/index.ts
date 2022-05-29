@@ -6,6 +6,8 @@ import { UserRepository } from "@modules/account/infra/typeorm/implementations/U
 import { IPermissionRepository } from "@modules/account/repositories/IPermissionRepository";
 import { IRoleRepository } from "@modules/account/repositories/IRoleRepository";
 import { IUserRepository } from "@modules/account/repositories/IUserRepository";
+import { ProductRepository } from "@modules/market/infra/typeorm/implementations/ProductRepository";
+import { IProductRepository } from "@modules/market/repositories/IProductRepository";
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
 container.registerSingleton<IPermissionRepository>(
@@ -13,3 +15,7 @@ container.registerSingleton<IPermissionRepository>(
   PermissionRepository
 );
 container.registerSingleton<IRoleRepository>("RoleRepository", RoleRepository);
+container.registerSingleton<IProductRepository>(
+  "ProductRepository",
+  ProductRepository
+);
